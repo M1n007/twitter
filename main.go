@@ -48,7 +48,7 @@ func main() {
 		json.Unmarshal(body, &keyVal)
 
 		if keyVal["msg"] == "Tersedia!" {
-			color.New(color.FgGreen, color.BgBlack).Println("Email : "+email, keyVal["msg"])
+			color.New(color.FgGreen, color.BgBlack).Println("Selamat, Email : "+email, "Bisa Didaftarkan.", "Message : ", keyVal["msg"])
 		} else {
 			color.New(color.FgRed, color.BgBlack).Println("Email : "+email, keyVal["msg"])
 		}
