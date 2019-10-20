@@ -49,10 +49,39 @@ func main() {
 
 		if keyVal["msg"] == "Tersedia!" {
 			color.New(color.FgGreen, color.BgBlack).Println("Selamat, Email : "+email, "Bisa Didaftarkan.", "Message : ", keyVal["msg"])
+			createFile(email, keyVal["msg"])
 		} else {
 			color.New(color.FgRed, color.BgBlack).Println("Email : "+email, keyVal["msg"])
+			createFile(email, keyVal["msg"])
 		}
 
 	}
 
+}
+
+func createFile(email string, indicator string) {
+	var newEmail = email + "\n"
+	if indicator == "Tersedia!" {
+		f, err := os.OpenFile("notRegistered.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if _, err := f.Write([]byte(newEmail)); err != nil {
+			log.Fatal(err)
+		}
+		if err := f.Close(); err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		f, err := os.OpenFile("registered.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if _, err := f.Write([]byte(newEmail)); err != nil {
+			log.Fatal(err)
+		}
+		if err := f.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}
 }
