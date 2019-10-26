@@ -48,7 +48,7 @@ func main() {
 		json.Unmarshal(body, &keyVal)
 
 		if keyVal["msg"] == "Tersedia!" {
-			color.New(color.FgGreen, color.BgBlack).Println("Selamat, Email : "+email, "Bisa Didaftarkan.", "Message : ", keyVal["msg"])
+			color.New(color.FgGreen, color.BgBlack).Println("Selamat, Email anda : "+email, "Dapat Didaftarkan.", "Message : ", keyVal["msg"])
 			createFile(email, keyVal["msg"])
 		} else {
 			color.New(color.FgRed, color.BgBlack).Println("Email : "+email, keyVal["msg"])
@@ -84,4 +84,7 @@ func createFile(email string, indicator string) {
 			log.Fatal(err)
 		}
 	}
+	
+  //this is my change
+
 }
